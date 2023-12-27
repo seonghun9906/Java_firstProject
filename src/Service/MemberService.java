@@ -45,7 +45,7 @@ public class MemberService {
         if(login != null){
             System.out.println("로그인 되었습니다.");
             CommonVariables.longinEmail = loginEamil;
-            System.out.println(loginEamil + " 님 환영합니다. ");
+            System.out.println(loginEamil + " 님 환영합니다!! ");
 
         }else{
             System.out.println("로그인에 실패하였습니다.");
