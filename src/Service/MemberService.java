@@ -30,4 +30,7 @@ public class MemberService {
             System.out.println("회원가입에 실패하였습니다. 다시 회원가입 해주시길 바랍니다.");
         }
     }
+
+    public void login() {
+    }
 }
