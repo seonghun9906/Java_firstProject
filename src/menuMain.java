@@ -21,7 +21,10 @@ public class menuMain {
                 memberService.save();
             }else if(num == 2){
                 memberService.login();
-            }else if(num == 4){
+            }else if(num == 3){
+                memberService.logout();
+            }
+            else if(num == 4){
                 run = false;
             }
 

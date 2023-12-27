@@ -52,4 +52,14 @@ public class MemberService {
             System.out.println("Eamil 또는 Pw를 다시 확인하여주시기 바랍니다.");
         }
     }
+
+    public void logout() {
+        if(CommonVariables.longinEmail != null){
+            CommonVariables.longinEmail = null;
+            System.out.println("로그아웃 되었습니다.");
+        }else{
+            System.out.println("로그인 상태가 아닙니다.");
+            System.out.println("로그인 해주시길 바랍니다.");
+        }
+    }
 }
