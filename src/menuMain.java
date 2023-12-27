@@ -1,4 +1,5 @@
 import Service.MemberService;
+import commonVariables.CommonVariables;
 
 import java.util.Scanner;
 
@@ -20,13 +21,18 @@ public class menuMain {
             if(num == 1){
                 memberService.save();
             }else if(num == 2){
-                memberService.login();
+                if(CommonVariables.longinEmail != null) {
+                    memberService.login();
+                }else{
+                    System.out.println("현재 로그인이 되어있는 상태입니다.");
+                    System.out.println("다른계정으로 로그인하시려면 로그아웃을 먼저 해주시길 바랍니다.");
+                }
             }else if(num == 3){
                 memberService.logout();
-            }
-            else if(num == 4){
+            }else if(num == 4){
                 run = false;
             }
+
 
 
         }
