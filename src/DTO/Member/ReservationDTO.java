@@ -1,6 +1,4 @@
-package DTO;
-
-import Repository.ReceiptRepository;
+package DTO.Member;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

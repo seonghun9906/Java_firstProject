@@ -1,5 +1,9 @@
 
-import Service.*;
+import Service.Member.MemberService;
+import Service.Member.ReservationService;
+import Service.National.JAPANService;
+import Service.National.RepublicOfKoreaService;
+import Service.National.USAService;
 import commonVariables.CommonVariables;
 
 import java.util.Scanner;
@@ -8,9 +12,9 @@ public class menuMain {
     public static void main(String[] args) {
         MemberService memberService = new MemberService();
         RepublicOfKoreaService republicOfKorea = new RepublicOfKoreaService();
-        ReceiptService receiptService = new ReceiptService();
+        ReservationService reservationService = new ReservationService();
         USAService usa = new USAService();
-        DOKYOService dokyo = new DOKYOService();
+        JAPANService dokyo = new JAPANService();
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         int num = 0;
@@ -33,36 +37,38 @@ public class menuMain {
                         boolean run1 = true;
                         while (run1) {
                             System.out.println("---------------------------------------------------------------------------------------------------");
-                            System.out.println("| 1. 도착 국가 선택 | 2. 입금기능 | 3. 나의 정보 및 예약 정보 | 4. 불편사항 접수 | 0. 메인메뉴로 돌아가기 | ");
+                            System.out.println("| 1.도착 국가 결정 | 2. 입금기능 | 3. 나의 정보 및 예약 정보 | 4. 불편사항 접수 | 0. 메인메뉴로 돌아가기 | ");
                             System.out.println("----------------------------------------------------------------------------------------------------");
                             System.out.print("서비스 선택 > ");
                             num = sc.nextInt();
 
                             boolean run2 = true;
-                            if (num == 1) {
-                                while (run2) {
-                                    System.out.println("------------------------------------------------------");
-                                    System.out.println(" | 1. 대한민국 | 2. 일본 | 3. 미국 | 0. 전 메뉴 돌아가기 | ");
-                                    System.out.println("------------------------------------------------------");
-                                    num = sc.nextInt();
-                                    if (num == 1) {
-                                        System.out.println("선택하신 국가는 대한민국 입니다. ");
-                                        republicOfKorea.RepublicOfKorea();
-                                    } else if (num == 2) {
-                                        System.out.println("선택하신 국가는 일본 입니다. ");
-                                        dokyo.DOKYO();
-                                    } else if (num == 3) {
-                                        System.out.println("선택하신 국가는 미국 입니다. ");
-                                        usa.USA();
-                                    } else if (num == 0) {
-                                        System.out.println("전 메뉴로 돌아가겠습니다.");
-                                        run2 = false;
+
+
+                                if (num == 1) {
+                                    while (run2) {
+                                        System.out.println("------------------------------------------------------");
+                                        System.out.println(" | 1. 대한민국 | 2. 일본 | 3. 미국 | 0. 전 메뉴 돌아가기 | ");
+                                        System.out.println("------------------------------------------------------");
+                                        num = sc.nextInt();
+                                        if (num == 1) {
+                                            System.out.println("선택하신 국가는 대한민국 입니다. ");
+                                            republicOfKorea.RepublicOfKorea();
+                                        } else if (num == 2) {
+                                            System.out.println("선택하신 국가는 일본 입니다. ");
+                                            dokyo.JAPAN();
+                                        } else if (num == 3) {
+                                            System.out.println("선택하신 국가는 미국 입니다. ");
+                                            usa.USA();
+                                        } else if (num == 0) {
+                                            System.out.println("전 메뉴로 돌아가겠습니다.");
+                                            run2 = false;
+                                        }
                                     }
-                                }
                             } else if (num == 2) {
-                                    receiptService.deposit();
+                                reservationService.deposit();
                             } else if (num == 3) {
-                                    memberService.Mypage();
+                                memberService.Mypage();
                             } else if (num == 4) {
 
                             } else if (num == 5) {

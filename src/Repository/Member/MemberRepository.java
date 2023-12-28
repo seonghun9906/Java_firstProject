@@ -1,9 +1,9 @@
-package Repository;
+package Repository.Member;
 
-import DTO.AirplaneDTO;
-import DTO.ReservationDTO;
+import DTO.National.RepublicOfKoreaDTO;
+import DTO.Member.ReservationDTO;
 import commonVariables.CommonVariables;
-import DTO.MemberDTO;
+import DTO.Member.MemberDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class MemberRepository {
     CommonVariables loginmethod = new CommonVariables();
     List<MemberDTO> memberDTOList = new ArrayList<>();
-    List<AirplaneDTO> airplaneDTOS = new ArrayList<>();
+    List<RepublicOfKoreaDTO> republicOfKoreaDTOS = new ArrayList<>();
     List<ReservationDTO> reservationDTOList = new ArrayList<>();
 
     public boolean save(MemberDTO memberDTO) {

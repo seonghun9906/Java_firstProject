@@ -1,12 +1,11 @@
-package Service;
+package Service.Member;
 
-import DTO.MemberDTO;
-import DTO.ReservationDTO;
-import Repository.MemberRepository;
-import Repository.ReservationRepository;
+import DTO.Member.MemberDTO;
+import DTO.Member.ReservationDTO;
+import Repository.Member.MemberRepository;
+import Repository.Member.ReservationRepository;
 import commonVariables.CommonVariables;
 
-import java.lang.reflect.Member;
 import java.util.Scanner;
 
 public class MemberService {
@@ -90,19 +89,23 @@ public class MemberService {
                 String memEmail = sc.next();
                 memberRepository.memList(memEmail);
             } else if (num == 2) {
-                System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
-                System.out.print(" E mail > ");
-                String memEmail = sc.next();
 
-                if (CommonVariables.deposit != null) {
-                    ReservationDTO reservationDTO1 = reservationRepository.reserveprint(memEmail);
-                    if (reservationDTO1 != null) {
-                        System.out.println(reservationDTO1);
+                    System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
+                    System.out.print(" E mail > ");
+                    String memEmail = sc.next();
+                if (CommonVariables.Reserving != null) {
+                    if (CommonVariables.deposit != null) {
+                        ReservationDTO reservationDTO1 = reservationRepository.reserveprint(memEmail);
+                        if (reservationDTO1 != null) {
+                            System.out.println(reservationDTO1);
+                        } else {
+                            System.out.println("입력 정보 x");
+                        }
                     } else {
-                        System.out.println("입력 정보 x");
+                        System.out.println("입금을 먼저 해주시길 바랍니다.");
                     }
-                } else {
-                    System.out.println("입금을 먼저 해주시길 바랍니다.");
+                }else{
+                    System.out.println("예약 정보가 업습니다. / 좌석배정예약을 해주시고 입금을 해주시면 예약정보가 뜹니다.");
                 }
             }
         }
