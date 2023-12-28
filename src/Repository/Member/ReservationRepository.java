@@ -22,19 +22,23 @@ public class ReservationRepository {
         return reservationDTO;
     }
 
-    public boolean depsitCheck(int deposit) {
+    public boolean depsitCheck(int deposit , String loginEmail) {
         boolean result = false;
-        for (int i = 0; i <reservationDTOList.size() ; i++) {
-            if(deposit == reservationDTOList.get(i).getReservePrice()){
+        for (int j = 0; j <reservationDTOList.size() ; j++) {
+            if(loginEmail.equals(reservationDTOList.get(j).getMemEmail())){
+            if(deposit == reservationDTOList.get(j).getReservePrice()){
                 result = true;
-            }else if(deposit > reservationDTOList.get(i).getReservePrice()){
+            }else if(deposit > reservationDTOList.get(j).getReservePrice()){
                 System.out.println("더 많은 금액이 입력되었습니다. 재 입력 바랍니다.");
-                System.out.println("입금해야할 금액은 " +reservationDTOList.get(i).getReservePrice() + " 원 입니다." );
+                System.out.println("입금해야할 금액은 " +reservationDTOList.get(j).getReservePrice() + " 원 입니다." );
             }else{
                 System.out.println("더 적은 금액이 입력되었습니다. 재 입력바랍니다.");
-                System.out.println("입금해야할 금액은 " +reservationDTOList.get(i).getReservePrice() + " 원 입니다." );
+                System.out.println("입금해야할 금액은 " +reservationDTOList.get(j).getReservePrice() + " 원 입니다." );
+            }
+            break;
             }
         }return result;
+
     }
 }
 

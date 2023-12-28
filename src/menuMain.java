@@ -37,7 +37,7 @@ public class menuMain {
                         boolean run1 = true;
                         while (run1) {
                             System.out.println("---------------------------------------------------------------------------------------------------");
-                            System.out.println("| 1.도착 국가 결정 | 2. 입금기능 | 3. 나의 정보 및 예약 정보 | 4. 불편사항 접수 | 0. 메인메뉴로 돌아가기 | ");
+                            System.out.println("| 1.도착 국가 결정 | 2. 입금기능 | 3. 나의 정보 및 예약 정보 | 0. 메인메뉴로 돌아가기 | ");
                             System.out.println("----------------------------------------------------------------------------------------------------");
                             System.out.print("서비스 선택 > ");
                             num = sc.nextInt();
@@ -69,10 +69,6 @@ public class menuMain {
                                 reservationService.deposit();
                             } else if (num == 3) {
                                 memberService.Mypage();
-                            } else if (num == 4) {
-
-                            } else if (num == 5) {
-
                             } else if (num == 0) {
                                 System.out.println("메인메뉴로 돌아가겠습니다.");
                                 run1 = false;

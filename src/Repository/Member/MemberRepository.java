@@ -18,7 +18,6 @@ public class MemberRepository {
         return memberDTOList.add(memberDTO);
 
     }
-
     public boolean emailCheck(String emailCheck) {
         boolean result = true;
         for (int i = 0; i < memberDTOList.size(); i++) {
@@ -56,5 +55,8 @@ public class MemberRepository {
             }
         }
     }
+
+
 }
+
 

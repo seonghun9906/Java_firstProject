@@ -18,12 +18,11 @@ public class ReservationService {
     public void deposit() {
         System.out.println(" 고객의 예약 정보를 확인하기 위해 email를 입력해주세요. ");
         String memEmail = sc.next();
-        boolean emailCheck = memberRepository.emailCheck(memEmail);
-        if(emailCheck) {
+        if(memEmail.equals(CommonVariables.longinEmail)) {
             System.out.println(" 입금하실 금액을 입력해 주세요. ");
             System.out.print(" 입금할 금액 > ");
             int deposit = sc.nextInt();
-            boolean depositCheck = reservationRepository.depsitCheck(deposit);
+            boolean depositCheck = reservationRepository.depsitCheck(deposit, CommonVariables.longinEmail);
               CommonVariables.deposit = String.valueOf(deposit);
             if(depositCheck){
                 CommonVariables.Reserving = memEmail;
@@ -31,6 +30,8 @@ public class ReservationService {
             }else{
                 System.out.println("입금이 확인에 실패하였습니다. 정확한 금액을 다시 적어주시기 바랍니다.");
             }
+        }else{
+            System.out.println("로그인된 이메일과 입력된 이메일이 다릅니다.");
         }
     }
 }

@@ -64,6 +64,7 @@ public class MemberService {
         }
     }
 
+
     public void logout() {
         if (CommonVariables.longinEmail != null) {
             CommonVariables.longinEmail = null;
@@ -84,28 +85,36 @@ public class MemberService {
             int num = sc.nextInt();
 
             if (num == 1) {
+
                 System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
                 System.out.print(" E mail > ");
                 String memEmail = sc.next();
-                memberRepository.memList(memEmail);
+                if (memEmail.equals(CommonVariables.longinEmail)) {
+                    memberRepository.memList(memEmail);
+                }else{
+                    System.out.println("로그인된 이메일과 입력한 이메일이 다릅니다.");
+                }
             } else if (num == 2) {
-
-                    System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
-                    System.out.print(" E mail > ");
-                    String memEmail = sc.next();
-                if (CommonVariables.Reserving != null) {
-                    if (CommonVariables.deposit != null) {
-                        ReservationDTO reservationDTO1 = reservationRepository.reserveprint(memEmail);
-                        if (reservationDTO1 != null) {
-                            System.out.println(reservationDTO1);
+                System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
+                System.out.print(" E mail > ");
+                String memEmail = sc.next();
+                if (memEmail.equals(CommonVariables.longinEmail)) {
+                    if (CommonVariables.Reserving != null) {
+                        if (CommonVariables.deposit != null) {
+                            ReservationDTO reservationDTO1 = reservationRepository.reserveprint(memEmail);
+                            if (reservationDTO1 != null) {
+                                System.out.println(reservationDTO1);
+                            } else {
+                                System.out.println("입력 정보 x");
+                            }
                         } else {
-                            System.out.println("입력 정보 x");
+                            System.out.println("입금을 먼저 해주시길 바랍니다.");
                         }
                     } else {
-                        System.out.println("입금을 먼저 해주시길 바랍니다.");
+                        System.out.println("예약 정보가 업습니다. / 좌석배정예약을 해주시고 입금을 해주시면 예약정보가 뜹니다.");
                     }
                 }else{
-                    System.out.println("예약 정보가 업습니다. / 좌석배정예약을 해주시고 입금을 해주시면 예약정보가 뜹니다.");
+                    System.out.println("로그인된 이메일과 입력한 이메일이 다릅니다.");
                 }
             }
         }
