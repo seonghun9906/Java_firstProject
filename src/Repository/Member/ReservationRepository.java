@@ -1,16 +1,20 @@
 package Repository.Member;
 
-import DTO.Member.MemberDTO;
 import DTO.Member.ReservationDTO;
 import DTO.Member.SeatReserveDTO;
+import Repository.National.JAPANRepository;
+import Repository.National.RepublicOfKoreaRepository;
+import Repository.National.USARepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationRepository {
     static List<ReservationDTO> reservationDTOList = new ArrayList<>();
-     List<MemberDTO> memberDTOList = new ArrayList<>();
     static List<SeatReserveDTO> seatReserveDTOList = new ArrayList<>();
+    RepublicOfKoreaRepository republicOfKoreaRepository = new RepublicOfKoreaRepository();
+    JAPANRepository japanRepository = new JAPANRepository();
+    USARepository usaRepository = new USARepository();
 
     public boolean reserve(SeatReserveDTO seatReserveDTO) {
         return seatReserveDTOList.add(seatReserveDTO);
@@ -61,29 +65,57 @@ public class ReservationRepository {
         return reservationDTO;
     }
 
-    public void reserveCancle(String memEamil) {
-        for (int i = 0; i < reservationDTOList.size(); i++) {
-            for (int j = 0; j < seatReserveDTOList.size(); j++) {
-                if (memEamil.equals(seatReserveDTOList.get(i).getMemEmail())) {
-                    if (memEamil.equals(reservationDTOList.get(i).getMemEmail())) {
-                        reservationDTOList.remove(reservationDTOList.get(i));
-                        seatReserveDTOList.remove(seatReserveDTOList.get(j));
-                    }
-                }
+//    public void reserveCancle(String memEamil) {
+//        for (int i = 0; i < reservationDTOList.size(); i++) {
+//            if (memEamil.equals(reservationDTOList.get(i).getMemEmail())) {
+//                reservationDTOList.remove(i);
+//                if (memEamil.equals(seatReserveDTOList.get(i).getMemEmail())) {
+//                    int result = seatReserveDTOList.get(i).getSeatnumber();
+////                        seatReserveDTOList.remove(i);
+//                    int[] resultArray = republicOfKoreaRepository.getArray();
+//                    for (int num : resultArray) {
+//                        if (memEamil.equals(reservationDTOList.get(i).getMemEmail())){
+//                            num = 0;
+//                            System.out.println("num = " + num);
+//                        }
+//
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//    }
+public void reserveCancle(String memEmail) {
+    for (int i = 0; i < reservationDTOList.size(); i++) {
+        if (memEmail.equals(reservationDTOList.get(i).getMemEmail())) {
+            reservationDTOList.remove(i);
+            int seatNumber = seatReserveDTOList.get(i).getSeatnumber();
+            seatReserveDTOList.remove(i); // 좌석 정보 삭제
 
+            // 해당 좌석 번호의 정보를 0으로 초기화하는 작업
+            int[] resultArray = republicOfKoreaRepository.getArray();
+            if (seatNumber >= 0 && seatNumber < resultArray.length) {
+                resultArray[seatNumber] = 0;
+                System.out.println(resultArray[0]+resultArray[1]);
+            }
+            int[] resultArray1 = japanRepository.getArray();
+            if (seatNumber >= 0 && seatNumber < resultArray1.length) {
+                resultArray1[seatNumber] = 0;
+                System.out.println(resultArray1[0]+resultArray1[1]);
+            }
+            int[] resultArray2 = usaRepository.getArray();
+            if (seatNumber >= 0 && seatNumber < resultArray2.length) {
+                resultArray2[seatNumber] = 0;
+                System.out.println(resultArray2[0]+resultArray2[1]);
             }
         }
     }
-
-    public MemberDTO reseveCheck(String memEmail) {
-        for (int i = 0; i <memberDTOList.size() ; i++) {
-            if(memEmail.equals(memberDTOList.get(i).getEmail())){
-              MemberDTO memberDTO = memberDTOList.get(i);
-               return memberDTO;
-            }
-        }return null;
-    }
 }
+}
+//                republicOfKoreaRepository.set(resultArray); // 배열 업데이트
+
+
 
 
 

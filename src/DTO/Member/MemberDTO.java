@@ -11,15 +11,6 @@ public class MemberDTO {
     public String MemberName;
     public String memberMobile;
     public String SignupAt;
-    public List<MemberDTO> reservationDTOList;
-
-    public List<MemberDTO> getReservationDTOList() {
-        return reservationDTOList;
-    }
-
-    public void setReservationDTOList(List<MemberDTO> reservationDTOList) {
-        this.reservationDTOList = reservationDTOList;
-    }
 
     public MemberDTO() {
 
@@ -34,7 +25,6 @@ public class MemberDTO {
                 ", MemberName='" + MemberName + '\'' +
                 ", memberMobile='" + memberMobile + '\'' +
                 ", SignupAt='" + SignupAt + '\'' +
-                ", reservationDTOList=" + reservationDTOList +
                 ", idvalue=" + idvalue +
                 '}';
     }

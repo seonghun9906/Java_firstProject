@@ -1,7 +1,7 @@
 package Repository.National;
 
 public class RepublicOfKoreaRepository {
-    private static int[] seat = new int[10];
+    public static int[] seat = new int[10];
     private static int[] seat2 = new int[10];
     private static int[] seat3 = new int[10];
     private static int[] seat4 = new int[10];
@@ -9,6 +9,11 @@ public class RepublicOfKoreaRepository {
     private static int[] seat6 = new int[10];
     private static int[] seat7 = new int[10];
     private static int[] seat8 = new int[10];
+
+    public int[] getArray(){
+        return seat;
+    }
+
 
     public boolean reserveSeat(int seatNumber){
 
@@ -86,4 +91,5 @@ public class RepublicOfKoreaRepository {
         }
         return false;
     }
+
 }

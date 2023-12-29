@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MemberService {
+
     ReservationRepository reservationRepository = new ReservationRepository();
     MemberRepository memberRepository = new MemberRepository();
     Scanner sc = new Scanner(System.in);
@@ -124,6 +125,8 @@ public class MemberService {
         }
     }
 
+
+
     public void reserveCancle() {
         System.out.println("본인 확인을 위해 이메일을 입력해주세요.");
         System.out.print("Eamil > ");
@@ -132,9 +135,6 @@ public class MemberService {
         boolean emailCheck = memberRepository.emailCheck(memEamil);
         if(CommonVariables.longinEmail.equals(memEamil)) {
             if (!emailCheck) {
-                CommonVariables.Reserving = null;
-                CommonVariables.Seatreserve = null;
-                CommonVariables.deposit = null;
                 reservationRepository.reserveCancle(memEamil);
 
                 System.out.println("예약이 취소 되었습니다.");

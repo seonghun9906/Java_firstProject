@@ -1,5 +1,6 @@
 
 import DTO.Member.MemberDTO;
+import Repository.National.RepublicOfKoreaRepository;
 import Service.Member.MemberService;
 import Service.Member.ReservationService;
 import Service.National.JAPANService;

@@ -10,6 +10,9 @@ public class JAPANRepository {
     private static int[] seat7 = new int[10];
     private static int[] seat8 = new int[10];
 
+    public int[] getArray(){
+        return seat;
+    }
     public boolean reserveSeat(int seatNumber){
 
         if(seatNumber >= 0 && seatNumber< seat.length){

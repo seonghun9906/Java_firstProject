@@ -19,6 +19,7 @@ public class MemberRepository {
         return memberDTOList.add(memberDTO);
 
     }
+
     public boolean emailCheck(String emailCheck) {
         boolean result = true;
         for (int i = 0; i < memberDTOList.size(); i++) {
@@ -40,18 +41,17 @@ public class MemberRepository {
 
 
     public void memList(String memEmail) {
-        for (int i = 0; i <memberDTOList.size() ; i++) {
-            if (memEmail.equals(memberDTOList.get(i).getEmail())){
-             System.out.println(memberDTOList.get(i));
+        for (int i = 0; i < memberDTOList.size(); i++) {
+            if (memEmail.equals(memberDTOList.get(i).getEmail())) {
+                System.out.println(memberDTOList.get(i));
             }
         }
     }
 
 
-
     public void reservation(String memEmail) {
-        for (int i = 0; i < memberDTOList.size() ; i++) {
-            if(memEmail.equals(memberDTOList.get(i).getEmail())){
+        for (int i = 0; i < memberDTOList.size(); i++) {
+            if (memEmail.equals(memberDTOList.get(i).getEmail())) {
                 System.out.println(reservationDTOList.get(i));
             }
         }
@@ -60,24 +60,26 @@ public class MemberRepository {
 
     public boolean logout(String LoginEmail) {
         boolean result = false;
-        for (int i = 0; i <memberDTOList.size() ; i++) {
-            if (LoginEmail.equals(memberDTOList.get(i).getEmail())){
+        for (int i = 0; i < memberDTOList.size(); i++) {
+            if (LoginEmail.equals(memberDTOList.get(i).getEmail())) {
                 if (CommonVariables.longinEmail != null) {
                     CommonVariables.longinEmail = null;
-                   result = true;
+                    result = true;
                 }
             }
-        }return result;
+        }
+        return result;
     }
 
-
     public MemberDTO Check(String longinEmail) {
-        for (int i = 0; i <memberDTOList.size() ; i++) {
-            if(longinEmail.equals(memberDTOList.get(i).getEmail())){
-                MemberDTO memberDTO = memberDTOList.get(i);
+        MemberDTO memberDTO = null;
+        for (int i = 0; i < memberDTOList.size(); i++) {
+            if (longinEmail.equals(memberDTOList.get(i).getEmail())) {
+                memberDTO = memberDTOList.get(i);
                 return memberDTO;
             }
-        }return null;
+        }
+        return memberDTO;
     }
 }
 

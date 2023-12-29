@@ -1,6 +1,6 @@
 package Service.National;
 
-import DTO.Member.MemberDTO;
+
 import DTO.Member.SeatReserveDTO;
 import DTO.National.RepublicOfKoreaDTO;
 import DTO.Member.ReservationDTO;
@@ -9,8 +9,7 @@ import Repository.National.RepublicOfKoreaRepository;
 import Repository.Member.ReservationRepository;
 import commonVariables.CommonVariables;
 
-import java.lang.reflect.Member;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class RepublicOfKoreaService {
@@ -58,14 +57,6 @@ public class RepublicOfKoreaService {
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeatPrice + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
                             CommonVariables.Seatreserve = String.valueOf(num2);
-                             MemberDTO memberDTO = memberRepository.Check(CommonVariables.longinEmail);
-                            if (memberDTO != null) {
-                                memberDTO.getReservationDTOList().add(reservationDTO);
-                            }else{
-                                System.out.println("오류로 인해 취소");
-                            }
-
-
                             run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
