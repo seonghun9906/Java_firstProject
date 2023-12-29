@@ -2,6 +2,7 @@ package DTO.Member;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class MemberDTO {
     public Long id;
@@ -10,8 +11,17 @@ public class MemberDTO {
     public String MemberName;
     public String memberMobile;
     public String SignupAt;
-    public String LoginAt;
-    public MemberDTO(){
+    public List<MemberDTO> reservationDTOList;
+
+    public List<MemberDTO> getReservationDTOList() {
+        return reservationDTOList;
+    }
+
+    public void setReservationDTOList(List<MemberDTO> reservationDTOList) {
+        this.reservationDTOList = reservationDTOList;
+    }
+
+    public MemberDTO() {
 
     }
 
@@ -24,12 +34,13 @@ public class MemberDTO {
                 ", MemberName='" + MemberName + '\'' +
                 ", memberMobile='" + memberMobile + '\'' +
                 ", SignupAt='" + SignupAt + '\'' +
-                ", LoginAt='" + LoginAt + '\'' +
+                ", reservationDTOList=" + reservationDTOList +
                 ", idvalue=" + idvalue +
                 '}';
     }
 
     public Long idvalue = 1L;
+
     public MemberDTO(String email, String pw, String memberName, String memberMobile) {
         this.id = idvalue;
         Email = email;
@@ -37,7 +48,6 @@ public class MemberDTO {
         MemberName = memberName;
         this.memberMobile = memberMobile;
         SignupAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        LoginAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public Long getId() {
@@ -88,11 +98,5 @@ public class MemberDTO {
         SignupAt = signupAt;
     }
 
-    public String getLoginAt() {
-        return LoginAt;
-    }
 
-    public void setLoginAt(String loginAt) {
-        LoginAt = loginAt;
-    }
 }

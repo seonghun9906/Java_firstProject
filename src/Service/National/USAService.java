@@ -1,5 +1,6 @@
 package Service.National;
 
+import DTO.Member.SeatReserveDTO;
 import DTO.National.RepublicOfKoreaDTO;
 import DTO.Member.ReservationDTO;
 import Repository.Member.ReservationRepository;
@@ -13,7 +14,6 @@ public class USAService {
    USARepository usaRepository = new USARepository();
     Scanner sc = new Scanner(System.in);
     int num1 = 0;
-
     public void USA() {
         boolean run = true;
         String mememail = CommonVariables.longinEmail;
@@ -42,13 +42,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeatPrice, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeatPrice, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeatPrice + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -66,13 +70,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat1(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeatPrice1, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeatPrice1, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeatPrice1 + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -90,13 +98,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat2(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeat2Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "아시아나 항공", RepublicOfKoreaDTO.reserveSeat2Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat2Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -124,13 +136,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat3(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat3Price, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat3Price, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat3Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -148,13 +164,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat4(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat4Price, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat4Price, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat4Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -172,13 +192,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat5(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat5Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "대한 항공", RepublicOfKoreaDTO.reserveSeat5Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat5Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -206,13 +230,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat6(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat6Price, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat6Price, " 1. 출발 시각 /  10 : 00  | 도착 시각 /  12 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat6Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -230,13 +258,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat7(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat7Price, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat7Price, " 출발 시각 /  13 : 00  | 도착 시각 /  15 : 00" , num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat7Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -254,13 +286,17 @@ public class USAService {
                     int num2 = sc.nextInt();
                     boolean asiana = usaRepository.reserveSeat8(num2);
                     if (asiana) {
-                        ReservationDTO reservationDTO1 = new ReservationDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat8Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
-                        boolean Check = reservationRepository.reserve(reservationDTO1);
-                        System.out.println(reservationDTO1);
+                        SeatReserveDTO seatReserveDTO = new SeatReserveDTO(mememail, "미국", "JIN AIR", RepublicOfKoreaDTO.reserveSeat8Price, " 출발 시각 /  17 : 00  | 도착 시각 /  19 : 00 ", num2);
+                        boolean Check = reservationRepository.reserve(seatReserveDTO);
+                        ReservationDTO reservationDTO = new ReservationDTO(seatReserveDTO.getMemEmail(), seatReserveDTO.getNationl(), seatReserveDTO.getAirline(), seatReserveDTO.reservePrice, seatReserveDTO.getTime(), seatReserveDTO.getSeatnumber());
+                        reservationRepository.reseveDTO(reservationDTO);
+                        System.out.println(seatReserveDTO);
                         if (Check) {
                             System.out.println("좌석 배정이 완료되었습니다. 고객님의 좌석 번호는 " + num2 + " 번 좌석 입니다.");
                             System.out.println("비행기 값은 " + RepublicOfKoreaDTO.reserveSeat8Price + " 입니다. ");
                             System.out.println("전 메뉴로 돌아가 입금을 부탁드립니다.");
+                            CommonVariables.Seatreserve = String.valueOf(num2);
+                            run = false;
                         } else {
                             System.out.println("오류로 인해 좌석이 배정되지 않았습니다.");
                         }
@@ -276,4 +312,5 @@ public class USAService {
         }
 
     }
+
 }

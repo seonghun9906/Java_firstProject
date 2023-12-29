@@ -5,6 +5,7 @@ import DTO.Member.ReservationDTO;
 import commonVariables.CommonVariables;
 import DTO.Member.MemberDTO;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,27 @@ public class MemberRepository {
     }
 
 
+    public boolean logout(String LoginEmail) {
+        boolean result = false;
+        for (int i = 0; i <memberDTOList.size() ; i++) {
+            if (LoginEmail.equals(memberDTOList.get(i).getEmail())){
+                if (CommonVariables.longinEmail != null) {
+                    CommonVariables.longinEmail = null;
+                   result = true;
+                }
+            }
+        }return result;
+    }
+
+
+    public MemberDTO Check(String longinEmail) {
+        for (int i = 0; i <memberDTOList.size() ; i++) {
+            if(longinEmail.equals(memberDTOList.get(i).getEmail())){
+                MemberDTO memberDTO = memberDTOList.get(i);
+                return memberDTO;
+            }
+        }return null;
+    }
 }
 
 

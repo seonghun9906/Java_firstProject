@@ -2,16 +2,18 @@ package Service.Member;
 
 import DTO.Member.MemberDTO;
 import DTO.Member.ReservationDTO;
+import DTO.Member.SeatReserveDTO;
 import Repository.Member.MemberRepository;
 import Repository.Member.ReservationRepository;
 import commonVariables.CommonVariables;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MemberService {
     ReservationRepository reservationRepository = new ReservationRepository();
     MemberRepository memberRepository = new MemberRepository();
-    ReservationDTO reservationDTO = new ReservationDTO();
     Scanner sc = new Scanner(System.in);
 
     public void save() {
@@ -66,8 +68,8 @@ public class MemberService {
 
 
     public void logout() {
-        if (CommonVariables.longinEmail != null) {
-            CommonVariables.longinEmail = null;
+      boolean logout = memberRepository.logout(CommonVariables.longinEmail);
+        if(logout){
             System.out.println("로그아웃 되었습니다.");
         } else {
             System.out.println("로그인 상태가 아닙니다.");
@@ -78,14 +80,13 @@ public class MemberService {
 
     public void Mypage() {
         if (CommonVariables.longinEmail != null) {
-            System.out.println("------------------------------------------");
-            System.out.println("   1. 회원정보 출력 | 2. 예약 정보 출력 ");
-            System.out.println("------------------------------------------");
+            System.out.println("---------------------------------------------");
+            System.out.println("   1. 회원정보 출력 | 2. 예약 정보 출력 | ");
+            System.out.println("----------------------------------------------");
             System.out.println("번호 입력 > ");
             int num = sc.nextInt();
 
             if (num == 1) {
-
                 System.out.println("본인확인을 위해 한번더 이메일을 입력해주세요.");
                 System.out.print(" E mail > ");
                 String memEmail = sc.next();
@@ -101,9 +102,11 @@ public class MemberService {
                 if (memEmail.equals(CommonVariables.longinEmail)) {
                     if (CommonVariables.Reserving != null) {
                         if (CommonVariables.deposit != null) {
-                            ReservationDTO reservationDTO1 = reservationRepository.reserveprint(memEmail);
-                            if (reservationDTO1 != null) {
-                                System.out.println(reservationDTO1);
+                            String DepositAT = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                           SeatReserveDTO seatReserveDTO1 = reservationRepository.reserveprint(memEmail);
+                           ReservationDTO reservationDTO1 = reservationRepository.reserveprintDTO(memEmail);
+                            if (seatReserveDTO1 != null) {
+                                System.out.println(reservationDTO1 + " 입금 시간 = " + DepositAT);
                             } else {
                                 System.out.println("입력 정보 x");
                             }
@@ -111,12 +114,35 @@ public class MemberService {
                             System.out.println("입금을 먼저 해주시길 바랍니다.");
                         }
                     } else {
-                        System.out.println("예약 정보가 업습니다. / 좌석배정예약을 해주시고 입금을 해주시면 예약정보가 뜹니다.");
+                        System.out.println("좌석배정예약이 없습니다.");
+                        System.out.println("좌석배정을 하셨으면 입금을 해주시기 바랍니다.");
                     }
                 }else{
                     System.out.println("로그인된 이메일과 입력한 이메일이 다릅니다.");
                 }
             }
+        }
+    }
+
+    public void reserveCancle() {
+        System.out.println("본인 확인을 위해 이메일을 입력해주세요.");
+        System.out.print("Eamil > ");
+        String memEamil = sc.next();
+
+        boolean emailCheck = memberRepository.emailCheck(memEamil);
+        if(CommonVariables.longinEmail.equals(memEamil)) {
+            if (!emailCheck) {
+                CommonVariables.Reserving = null;
+                CommonVariables.Seatreserve = null;
+                CommonVariables.deposit = null;
+                reservationRepository.reserveCancle(memEamil);
+
+                System.out.println("예약이 취소 되었습니다.");
+            } else {
+                System.out.println("예약 취소에 실패하였습니다. 이메일을 다시 확인해 주시기 바랍니다.");
+            }
+        }else{
+            System.out.println("로그인 된 이메일과 달라 예약 취소가 불가합니다.");
         }
     }
 }

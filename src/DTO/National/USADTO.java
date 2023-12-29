@@ -1,6 +1,5 @@
 package DTO.National;
 
-import Repository.National.RepublicOfKoreaRepository;
 
 public class USADTO {
     public static int reserveSeatPrice;
@@ -86,7 +85,7 @@ public class USADTO {
         USADTO.reserveSeat8Price = reserveSeat8Price;
     }
 
-    public USADTO() {
+    static  {
         reserveSeatPrice = 100000;
         reserveSeatPrice1 = 110000;
         reserveSeat2Price = 120000 ;

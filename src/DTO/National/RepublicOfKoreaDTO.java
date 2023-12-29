@@ -83,7 +83,7 @@ public class RepublicOfKoreaDTO {
         RepublicOfKoreaDTO.reserveSeat8Price = reserveSeat8Price;
     }
 
-    public RepublicOfKoreaDTO() {
+    static  {
         reserveSeatPrice = 100000;
         reserveSeatPrice1 = 110000;
         reserveSeat2Price = 120000 ;
